@@ -1,2 +1,1 @@
-# python-dev
-Docker image for containerizing various Python development tasks
+Docker image for containerizing various Python development tasks.
