@@ -5,13 +5,13 @@ import sys
 
 def main(args):
     if len(args) == 1:
-        args = args[0].split(',')
+        args = list(map(str.strip, args[0].split(',')))
 
     for arg in args:
         os.system('pyenv install {}'.format(arg))
 
     versions = ' '.join(args)
-    os.system('pyenv global {}'.format(versions))
+    os.system('pyenv global system {}'.format(versions))
 
 if __name__ == '__main__':
     main(sys.argv[1:])
