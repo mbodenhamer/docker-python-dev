@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y \
     libreadline-dev \
     libsqlite3-dev \
     llvm \
+    python-dev \
     python-pip \
     wget \
     zlib1g-dev \
@@ -24,6 +25,8 @@ ENV HOME /root
 ENV PYENVPATH $HOME/.pyenv
 ENV PATH $PYENVPATH/shims:$PYENVPATH/bin:$PATH
 RUN curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+
+ENV BE_UID=1000 BE_GID=1000
 
 # Setup docker app
 RUN mkdir /setup
