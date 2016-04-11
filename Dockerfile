@@ -18,7 +18,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     zlib1g-dev \
     && rm -rf /var/lib/apt/lists/* \
-    && pip install -U pip
+    && pip install -U \
+    pip \
+    PyYAML
 
 # Install pyenv
 ENV HOME /root
@@ -32,6 +34,7 @@ ENV BE_UID=1000 BE_GID=1000
 RUN mkdir /setup
 COPY .bashrc /root/.bashrc
 COPY pyversions /usr/local/bin/pyversions
+COPY requirements /usr/local/bin/requirements
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 VOLUME /app
@@ -40,17 +43,15 @@ ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ONBUILD ARG reqs=requirements.txt
 ONBUILD ARG devreqs=dev-requirements.txt
-ONBUILD ARG pkgreqs=apt-requirements.txt
+ONBUILD ARG pkgreqs=requirements.yml
 ONBUILD ARG versions=2.7.11,3.5.1
 ONBUILD ENV PYVERSIONS=$versions
 
-ONBUILD COPY $pkgreqs /setup/pkg-requirements.txt
+ONBUILD COPY $pkgreqs /setup/pkg-requirements.yml
 ONBUILD COPY $reqs /setup/requirements.txt
 ONBUILD COPY $devreqs /setup/dev-requirements.txt
 
-ONBUILD RUN apt-get update && \
-	cat /setup/pkg-requirements.txt | xargs apt-get install -y && \
-	rm -rf /var/lib/apt/lists/*
+ONBUILD RUN requirements /setup/pkg-requirements.yml
 ONBUILD RUN pip install --no-cache-dir -r /setup/dev-requirements.txt \
 	        -r /setup/requirements.txt
 ONBUILD RUN pyversions $versions
