@@ -42,6 +42,7 @@ ONBUILD ARG reqs=requirements.txt
 ONBUILD ARG devreqs=dev-requirements.txt
 ONBUILD ARG pkgreqs=apt-requirements.txt
 ONBUILD ARG versions=2.7.11,3.5.1
+ONBUILD ENV PYVERSIONS=$versions
 
 ONBUILD COPY $pkgreqs /setup/pkg-requirements.txt
 ONBUILD COPY $reqs /setup/requirements.txt
