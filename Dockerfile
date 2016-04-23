@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/* \
     && pip install -U \
     pip \
-    PyYAML
+    PyYAML \
+    setuptools \
+    && rm -rf .cache/pip
 
 # Install pyenv
 ENV HOME /root
