@@ -54,7 +54,8 @@ ONBUILD RUN pyversions $versions
 ONBUILD COPY $pkgreqs /setup/pkg-requirements.yml
 ONBUILD RUN requirements /setup/pkg-requirements.yml
 
-ONBUILD COPY $reqs /setup/requirements.txt
 ONBUILD COPY $devreqs /setup/dev-requirements.txt
 ONBUILD RUN pip install --no-cache-dir -r /setup/dev-requirements.txt
+
+ONBUILD COPY $reqs /setup/requirements.txt
 ONBUILD RUN pip install --no-cache-dir -r /setup/requirements.txt
