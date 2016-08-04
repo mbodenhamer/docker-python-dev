@@ -16,11 +16,11 @@ load test_helpers
     [[ ${lines[0]} =~ "system" ]]
 }
 
-@test "[$TEST_FILE] Check that custom scripts exist" {
+@test "[$TEST_FILE] Check that required programs exist" {
     run launch [ -x /usr/local/bin/pyversions ]
     [ $status = 0 ] 
 
-    run launch [ -x /usr/local/bin/requirements ]
+    run launch [ -x /usr/local/bin/depman ]
     [ $status = 0 ] 
 
     # Sanity check
