@@ -34,7 +34,7 @@ RUN curl -L https://raw.githubusercontent.com/yyuu/pyenv-installer/master/bin/py
 # Setup docker app
 RUN mkdir /setup
 COPY .bashrc /root/.bashrc
-COPY pyversions /usr/local/bin/pyversions
+COPY bin/ /usr/local/bin/
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 ENV BE_UID=1000 BE_GID=1000
