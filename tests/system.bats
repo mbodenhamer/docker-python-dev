@@ -8,7 +8,7 @@ load test_helpers
 
 @test "[$TEST_FILE] Check that pyenv is installed" {
     run launch pyenv
-    [[ ${lines[0]} =~ "pyenv 20" ]]
+    [[ ${lines[0]} =~ "pyenv" ]]
 }
 
 @test "[$TEST_FILE] Check system Python is pyenv default" {
