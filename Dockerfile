@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM debian:stretch
 MAINTAINER Matt Bodenhamer <mbodenhamer@mbodenhamer.com>
 
 # Install pyenv dependencies
@@ -44,7 +44,7 @@ WORKDIR /app
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ONBUILD ARG reqs=requirements.yml
-ONBUILD ARG versions=2.7.11,3.5.1
+ONBUILD ARG versions=2.7.14,3.6.2
 ONBUILD ENV PYVERSIONS=$versions
 
 ONBUILD RUN pyversions $versions
