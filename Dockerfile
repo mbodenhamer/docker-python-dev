@@ -50,4 +50,4 @@ ONBUILD ENV PYVERSIONS=$versions
 ONBUILD RUN pyversions $versions
 
 ONBUILD COPY $reqs /setup/requirements.yml
-ONBUILD RUN depman -f /setup/requirements.yml satsify all
+ONBUILD RUN depman -f /setup/requirements.yml satisfy all

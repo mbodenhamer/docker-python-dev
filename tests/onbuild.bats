@@ -7,10 +7,7 @@ load test_helpers
 }
 
 @test "[$TEST_FILE] Build Test 1" {
-    cp /app/tests/requirements.yml /tmp/requirements.yml
-    docker build -t ${ONBUILD_NAME}:latest --build-arg versions="" \
-	--build-arg reqs=/tmp/requirements.yml /app/tests
-    rm /tmp/requirements.yml
+    docker build -t ${ONBUILD_NAME}:latest --build-arg versions="" /app/tests
 }
 
 @test "[$TEST_FILE] depman Test" {
@@ -20,7 +17,7 @@ load test_helpers
 
 @test "[$TEST_FILE] pyversions null test" {
     run launch_build pyenv versions
-    [[ ${#array[@]} == 1 ]] # only system version installed
+    [[ ${#lines[@]} == 1 ]] # only system version installed
     [[ ${lines[0]} =~ "system" ]]
 }
 
